@@ -1,0 +1,28 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+
+<h2>By capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- listen event -->
+        <app-country-input 
+            (onEnter)="search($event)"
+            (onDebounce)="suggestions($event)"
+            placeholder="Eg. Lima"
+        >
+        </app-country-input>
+    </div>
+</div>
+<hr>
+<div *ngIf="error" class="alert alert-danger">
+    We couldn't find a capital with {{arg}}
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-table-countries [data]="countries"></app-table-countries>
+    </div>
+</div>
+
+</div>

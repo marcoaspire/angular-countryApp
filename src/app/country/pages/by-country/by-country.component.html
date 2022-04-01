@@ -1,0 +1,33 @@
+<h2>By country</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- listen event -->
+        <app-country-input 
+            (onEnter)="search($event)"
+            (onDebounce)="suggestions($event)"
+        >
+        </app-country-input>
+    </div>
+</div>
+
+<ul class="list-group" *ngIf="showSuggestion">
+    <li class="list-group-item list-group-item-action"  *ngFor="let country of countrySuggested">
+        <a [routerLink]="['/country', country.cca2]" class="nav-link" >{{country.name.common}}</a>
+    </li>
+    <li class="list-group-item list-group-item-action" (click)="search(arg)">
+        <a class="nav-link" >Search "{{arg}}"</a>
+    </li>
+</ul>
+
+<hr>
+<div *ngIf="error" class="alert alert-danger">
+    We couldn't find a country with {{arg}}
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-table-countries [data]="countries"></app-table-countries>
+    </div>
+</div>
